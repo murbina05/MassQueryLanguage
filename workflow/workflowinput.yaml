@@ -20,14 +20,6 @@ parameterlist:
       selectsinglefile: false
       folderunroll: false
 
-    - displayname: MassQL Query
-      paramtype: textarea
-      nf_paramname: query
-      formplaceholder: Enter MassQL Query
-      formvalue: "QUERY scaninfo(MS2DATA)"
-      rows: 4
-      cols: 50
-
     - displayname: Query Options
       paramtype: section
 
@@ -50,16 +42,10 @@ parameterlist:
           display: "Yes"
         - value: "NO"
           display: "No"
-    
-    
+
+
     # - displayname: ms2_tolerance
     #   paramtype: text
     #   nf_paramname: ms2_tolerance
     #   formplaceholder: Enter the ms2_tolerance
     #   formvalue: "0.5"
-
-    
-    
-
-
-    
