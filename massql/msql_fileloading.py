@@ -544,14 +544,14 @@ def _load_data_mzML2(input_filename):
     return ms1_df, ms2_df
 
  def _load_data_rep(input_filename):
-     MS_precisions = {
-         1: 5e-6,
-         2: 20e-6,
-         3: 20e-6,
-         4: 20e-6,
-         5: 20e-6,
-         6: 20e-6,
-         7: 20e-6,
+    MS_precisions = {
+        1: 5e-6,
+        2: 20e-6,
+        3: 20e-6,
+        4: 20e-6,
+        5: 20e-6,
+        6: 20e-6,
+        7: 20e-6,
     }
     run = pymzml.run.Reader(input_filename, MS_precisions=MS_precisions)
 
