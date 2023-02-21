@@ -543,7 +543,7 @@ def _load_data_mzML2(input_filename):
     
     return ms1_df, ms2_df
 
- def _load_data_rep(input_filename):
+def _load_data_rep(input_filename):
     MS_precisions = {
         1: 5e-6,
         2: 20e-6,
