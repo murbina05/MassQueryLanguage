@@ -55,7 +55,8 @@ def load_data(input_filename, cache=False):
 
     elif input_filename[-4:].lower() == ".txt" or input_filename[-4:].lower() == ".dat":
         ms1_df, ms2_df = _load_data_txt(input_filename)
-    
+    elif input_filename[-1:].lower() =="/":
+        ms1_df, ms2_df = _load_data_rep(input_filename)    
     else:
         print("Cannot Load File Extension")
         raise Exception("File Format Not Supported")
@@ -542,15 +543,15 @@ def _load_data_mzML2(input_filename):
     
     return ms1_df, ms2_df
 
-def _load_data_mzML(input_filename):
-    MS_precisions = {
-        1: 5e-6,
-        2: 20e-6,
-        3: 20e-6,
-        4: 20e-6,
-        5: 20e-6,
-        6: 20e-6,
-        7: 20e-6,
+ def _load_data_rep(input_filename):
+     MS_precisions = {
+         1: 5e-6,
+         2: 20e-6,
+         3: 20e-6,
+         4: 20e-6,
+         5: 20e-6,
+         6: 20e-6,
+         7: 20e-6,
     }
     run = pymzml.run.Reader(input_filename, MS_precisions=MS_precisions)
 
@@ -585,7 +586,7 @@ def _load_data_mzML(input_filename):
 
         i_max = max(intensity)
         i_sum = sum(intensity)
-        
+
         if spec.ms_level == 1:
             ms1_df['i'] = intensity
             ms1_df['i_norm'] = intensity / i_max
@@ -601,7 +602,7 @@ def _load_data_mzML(input_filename):
             msn_mz = spec.selected_precursors[0]["mz"]
             charge = 0
             if "charge" in spec.selected_precursors[0]:
-                charge = spec.selected_precursors[0]["charge"]
+              charge = spec.selected_precursors[0]["charge"]
 
             ms2_df['i'] = intensity
             ms2_df['i_norm'] = intensity / i_max
@@ -622,16 +623,7 @@ def _load_data_mzML(input_filename):
             ms2_df_list.append(ms2_df)
 
     if len(ms1_df_list) > 0:
-        ms1_df = pd.concat(ms1_df_list).reset_index()
-    else:
-        ms1_df = pd.DataFrame()
-
-    if len(ms2_df_list) > 0:
-        ms2_df = pd.concat(ms2_df_list).reset_index()
-    else:
-        ms2_df = pd.DataFrame()
-
-    return ms1_df, ms2_df
+        ms1
 
 def _load_data_txt(input_filename):
     # We are assuming whitespace separated columns, first is mz, second is intensity, and will be marked as MS1
